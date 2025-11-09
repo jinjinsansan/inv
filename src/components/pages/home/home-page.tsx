@@ -9,12 +9,11 @@ export function HomePage() {
     dictionary;
 
   return (
-    <div className="space-y-24 pb-24 pt-12 md:space-y-32 md:pt-20">
-      <section className="relative overflow-hidden bg-[#050708] text-white">
+    <div className="space-y-24 pb-24 pt-0 md:space-y-32">
+      <section className="relative isolate -mt-12 overflow-hidden bg-black text-white">
         <HeroBackground />
-        <HeroPhone />
 
-        <div className="relative z-20 mx-auto flex min-h-[640px] w-full max-w-4xl flex-col items-center justify-center gap-8 px-4 py-24 text-center">
+        <div className="relative z-20 mx-auto flex min-h-[820px] w/full max-w-4xl flex-col items-center justify-center gap-8 px-4 py-[14rem] text-center">
           <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-white/70">
             {hero.badge}
           </span>
@@ -218,58 +217,16 @@ export function HomePage() {
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0">
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
-        >
-          <source src="/スマートフォン取引映像生成.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black/95" />
-      </div>
-      <div className="animate-blob absolute left-[-18%] top-[-8%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.18),transparent_65%)] blur-3xl" />
-      <div className="animate-blob-delay absolute right-[-10%] top-[12%] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.24),transparent_60%)] blur-3xl" />
-      <div className="animate-float absolute left-1/2 top-[18%] h-[540px] w-[540px] -translate-x-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle,rgba(12,18,22,0.8),transparent_70%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-[radial-gradient(circle_at_bottom,rgba(12,17,20,0.65),transparent_70%)]" />
-    </div>
-  );
-}
-
-function HeroPhone() {
-  return (
-    <div className="pointer-events-none absolute left-1/2 top-16 z-10 w-[360px] -translate-x-1/2 sm:w-[420px]">
-      <div className="relative">
-        <div className="absolute inset-0 -z-10 scale-125 rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.25),transparent_60%)] blur-[120px]" />
-        <div className="relative mx-auto aspect-[9/19] w-full overflow-hidden rounded-[3.2rem] border border-white/10 bg-gradient-to-b from-[#121619] via-[#050708] to-[#101417] shadow-[0_80px_180px_-60px_rgba(20,110,255,0.55)]">
-          <div className="absolute inset-x-16 top-6 h-2 rounded-full bg-white/10" />
-          <div className="flex h-full flex-col justify-end rounded-[3.1rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.04),transparent_65%)] px-8 pb-10 pt-24 text-left">
-            <div className="space-y-2 text-white/80">
-              <p className="text-sm font-semibold tracking-[0.08em] text-white/70">GM!</p>
-              <p className="text-[13px] text-white/60">You are up +$2.19M today.</p>
-            </div>
-            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 text-white">
-              <div className="flex items-center justify-between text-xs text-white/60">
-                <span>Balance</span>
-                <span>$9.03M</span>
-              </div>
-              <div className="mt-3 flex items-center justify-between text-[11px] text-emerald-300">
-                <span>+2.19M</span>
-                <span className="text-sky-300">+31.97%</span>
-              </div>
-            </div>
-            <div className="mt-6 rounded-2xl border border-white/10 bg-black/50 p-4 text-[11px] text-white/60">
-              <p>Ask D-invesment</p>
-              <div className="mt-2 flex items-center justify-between text-[10px] text-white/40">
-                <span>モード: Fast</span>
-                <span>AI Online</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="h-full w-full object-cover"
+      >
+        <source src="/USDチャート.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/85" />
     </div>
   );
 }
@@ -282,27 +239,22 @@ function StoreButton({ platform }: StoreButtonProps) {
   const content =
     platform === 'ios'
       ? {
-          label: 'App Store',
-          prefix: 'Download on the',
-          icon: '',
+          label: '始める',
+          prefix: '',
+          icon: '▶',
         }
       : {
-          label: 'Google Play',
-          prefix: 'Get it on',
-          icon: '▶',
+          label: 'ログイン',
+          prefix: '',
+          icon: '→',
         };
 
   return (
-    <button className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-left text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/10">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-lg">
+    <button className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm">
         {content.icon}
       </span>
-      <span className="flex flex-col leading-none">
-        <span className="text-[11px] uppercase tracking-[0.25em] text-white/50">
-          {content.prefix}
-        </span>
-        <span className="text-sm font-semibold">{content.label}</span>
-      </span>
+      <span>{content.label}</span>
     </button>
   );
 }

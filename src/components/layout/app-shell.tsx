@@ -17,13 +17,10 @@ export function AppShell({ children }: AppShellProps) {
   }, [dictionary.meta.title]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100">
+    <div className="flex min-h-screen flex-col bg-black text-white">
       <SiteHeader />
       <main className="flex-1">
-        <div className="relative isolate overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.25),transparent_55%),radial-gradient(circle_at_80%_0%,rgba(129,140,248,0.35),transparent_52%),radial-gradient(circle_at_50%_110%,rgba(14,165,233,0.2),transparent_55%)]" />
-          {children}
-        </div>
+        <div className="relative isolate overflow-hidden bg-black">{children}</div>
       </main>
       <MobileNav />
     </div>
