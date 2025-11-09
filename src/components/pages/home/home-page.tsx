@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLanguage } from '@/providers/language-provider';
 
 export function HomePage() {
@@ -44,39 +45,63 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className="mx-auto grid w-full max-w-6xl gap-6 px-4 md:grid-cols-3">
-        {(
-          [
-            {
-              title: heroCards.scheduleTitle,
-              body: heroCards.scheduleBody,
-            },
-            {
-              title: heroCards.riskModesTitle,
-              body: heroCards.riskModesBody,
-            },
-            {
-              title: heroCards.complianceTitle,
-              body: heroCards.complianceBody,
-            },
-          ] as const
-        ).map((card) => (
-          <article
-            key={card.title}
-            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
-          >
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-400/0 via-white/0 to-indigo-500/0 transition duration-500 group-hover:from-cyan-500/20 group-hover:via-white/10 group-hover:to-indigo-500/30" />
-            <h3 className="mb-3 text-lg font-semibold text-white">
-              {card.title}
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-300">
-              {card.body}
+      <section className="relative isolate mx-auto w-full max-w-6xl px-4 py-16">
+        <div className="grid gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center">
+          <div className="space-y-6 text-left">
+            <span className="text-xs uppercase tracking-[0.35em] text-white/40">
+              D-invesment Intelligence
+            </span>
+            <h2 className="text-2xl font-semibold text-white md:text-4xl">
+              {heroCards.scheduleTitle}
+            </h2>
+            <p className="max-w-xl text-sm text-white/60 md:text-base">
+              {heroCards.scheduleBody}
             </p>
-          </article>
-        ))}
+            <div className="space-y-4">
+              {[heroCards.riskModesTitle, heroCards.complianceTitle].map(
+                (title) => (
+                  <div
+                    key={title}
+                    className="flex items-start gap-4 rounded-3xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur"
+                  >
+                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-sm font-semibold text-white/70">
+                      •
+                    </span>
+                    <div className="space-y-2">
+                      <p className="text-sm font-semibold text-white">
+                        {title}
+                      </p>
+                      <p className="text-xs text-white/60">
+                        {title === heroCards.riskModesTitle
+                          ? heroCards.riskModesBody
+                          : heroCards.complianceBody}
+                      </p>
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+          <div className="relative flex items-center justify-center">
+            <div className="relative w-full max-w-md overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-2 backdrop-blur">
+              <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+                <Image
+                  src="/btcusd.jpeg"
+                  alt="BTCUSD automated trading"
+                  width={640}
+                  height={960}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+              </div>
+              <div className="absolute left-6 bottom-6 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/70 backdrop-blur">
+                Live Feed
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 md:flex-row md:items-start">
         <div className="max-w-xl space-y-4">
           <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
@@ -193,8 +218,18 @@ export function HomePage() {
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(18,24,28,0.85),rgba(5,7,8,0.95))]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,13,16,0.9)_0%,rgba(5,7,8,0.95)_45%,rgba(5,7,8,1)_100%)]" />
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+        >
+          <source src="/スマートフォン取引映像生成.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black/95" />
+      </div>
       <div className="animate-blob absolute left-[-18%] top-[-8%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.18),transparent_65%)] blur-3xl" />
       <div className="animate-blob-delay absolute right-[-10%] top-[12%] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.24),transparent_60%)] blur-3xl" />
       <div className="animate-float absolute left-1/2 top-[18%] h-[540px] w-[540px] -translate-x-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle,rgba(12,18,22,0.8),transparent_70%)]" />
