@@ -1,6 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { useLanguage } from '@/providers/language-provider';
 
 export function HomePage() {

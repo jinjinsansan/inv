@@ -24,16 +24,18 @@ type LanguageProviderProps = {
 };
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [locale, setLocale] = useState<Locale>(defaultLocale);
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem('d-investment-locale');
-    if (saved === 'ja' || saved === 'en') {
-      setLocale(saved);
+  const [locale, setLocale] = useState<Locale>(() => {
+    if (typeof window === 'undefined') {
+      return defaultLocale;
     }
-  }, []);
+    const saved = window.localStorage.getItem('d-investment-locale');
+    return saved === 'ja' || saved === 'en' ? saved : defaultLocale;
+  });
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     window.localStorage.setItem('d-investment-locale', locale);
     document.documentElement.lang = locale;
   }, [locale]);

@@ -8,7 +8,7 @@ type ModeKey = 'stable' | 'middle' | 'active';
 
 export function ConnectionPage() {
   const { dictionary } = useLanguage();
-  const { connectionPage, common } = dictionary;
+  const { connectionPage, common, hero } = dictionary;
   const [connected, setConnected] = useState(true);
   const [mode, setMode] = useState<ModeKey>('stable');
   const [toggles, setToggles] = useState({
@@ -16,6 +16,12 @@ export function ConnectionPage() {
     newsFilter: false,
     syncBalance: true,
   });
+
+  const modeDefinitions: Array<{ key: ModeKey; label: string }> = [
+    { key: 'stable', label: connectionPage.stability },
+    { key: 'middle', label: connectionPage.middle },
+    { key: 'active', label: connectionPage.active },
+  ];
 
   const handleToggle = (key: keyof typeof toggles) => {
     setToggles((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -36,9 +42,7 @@ export function ConnectionPage() {
                 {connectionPage.connectionStatus}
               </p>
               <p className="mt-1 text-lg font-semibold text-white">
-                {connected
-                  ? dictionary.common.status.online
-                  : dictionary.common.status.offline}
+                {connected ? common.status.online : common.status.offline}
               </p>
               <p className="text-xs text-white/60">1540bo.org · ID 1540-93284</p>
             </div>
@@ -138,23 +142,21 @@ export function ConnectionPage() {
           モードを切り替えるとAI戦略が即座に再構成されます。
         </p>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {(['stable', 'middle', 'active'] satisfies Array<ModeKey>).map(
-            (key) => (
-              <ModeCard
-                key={key}
-                selected={mode === key}
-                title={connectionPage[key]}
-                onSelect={() => setMode(key)}
-              />
-            ),
-          )}
+          {modeDefinitions.map((definition) => (
+            <ModeCard
+              key={definition.key}
+              selected={mode === definition.key}
+              title={definition.label}
+              onSelect={() => setMode(definition.key)}
+            />
+          ))}
         </div>
         <div className="mt-8 flex flex-col gap-3 md:flex-row">
           <button className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 px-6 py-3 text-sm font-semibold text-slate-900 shadow shadow-cyan-500/20 transition hover:shadow-lg hover:shadow-cyan-500/30">
             {connectionPage.actions.save}
           </button>
           <button className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-white/60 hover:text-white">
-            {dictionary.hero.ctaSecondary}
+            {hero.ctaSecondary}
           </button>
         </div>
       </section>
