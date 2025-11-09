@@ -9,49 +9,38 @@ export function HomePage() {
 
   return (
     <div className="space-y-24 pb-24 pt-12 md:space-y-32 md:pt-20">
-      <section className="relative overflow-hidden pb-16">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_10%_-10%,rgba(34,211,238,0.28),transparent_45%),radial-gradient(circle_at_90%_0%,rgba(129,140,248,0.3),transparent_50%),radial-gradient(circle_at_50%_110%,rgba(14,165,233,0.18),transparent_55%)]" />
-        <div className="absolute inset-0 -z-10 opacity-70">
-          <AnimatedBackdrop />
-        </div>
+      <section className="relative overflow-hidden bg-[#050708] text-white">
+        <HeroBackground />
+        <HeroPhone />
 
-        <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-16">
-          <div className="relative z-10 space-y-8">
-            <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              {hero.badge}
-            </span>
-            <h1 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
-              {hero.title}
-            </h1>
-            <p className="max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-              {hero.subtitle}
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <button className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-cyan-500/20 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/30">
-                {hero.ctaPrimary}
-              </button>
-              <button className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-white/60 hover:text-white">
-                {hero.ctaSecondary}
-              </button>
-            </div>
-            <div className="flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.3em] text-white/40">
-              <span>{hero.trustedBy}</span>
-              <div className="flex items-center gap-3 text-white">
-                {Object.entries(hero.metrics).map(([key, label]) => (
-                  <div key={key} className="flex items-center gap-2">
-                    <span className="text-lg font-semibold">
-                      {hero.metricValues[key as keyof typeof hero.metricValues]}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-                      {label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="relative z-20 mx-auto flex min-h-[640px] w-full max-w-4xl flex-col items-center justify-center gap-8 px-4 py-24 text-center">
+          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-white/70">
+            {hero.badge}
+          </span>
+          <h1 className="text-3xl font-semibold tracking-[-0.01em] text-white md:text-6xl">
+            {hero.title}
+          </h1>
+          <p className="max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
+            {hero.subtitle}
+          </p>
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <StoreButton platform="ios" />
+            <StoreButton platform="android" />
           </div>
-          <div className="relative flex items-center justify-center">
-            <PhoneMockup />
+          <div className="flex flex-wrap items-center justify-center gap-8 text-xs uppercase tracking-[0.3em] text-white/40">
+            <span>{hero.trustedBy}</span>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-white">
+              {Object.entries(hero.metrics).map(([key, label]) => (
+                <div key={key} className="flex items-center gap-2">
+                  <span className="text-lg font-semibold">
+                    {hero.metricValues[key as keyof typeof hero.metricValues]}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -201,136 +190,84 @@ export function HomePage() {
   );
 }
 
-function PhoneMockup() {
+function HeroBackground() {
   return (
-    <div className="relative flex h-[560px] w-[280px] items-center justify-center">
-      <div className="absolute -inset-24 -z-20">
-        <div className="animate-blob absolute inset-0 rounded-[45%] bg-gradient-to-r from-cyan-500/30 via-sky-500/20 to-indigo-500/35 blur-3xl" />
-        <div className="animate-blob-delay absolute inset-10 rounded-[45%] bg-gradient-to-r from-indigo-500/25 via-slate-900/40 to-sky-400/25 blur-3xl" />
-      </div>
-      <div className="absolute -inset-16 -z-10 opacity-80">
-        <PhoneBackdrop />
-      </div>
-      <div className="relative h-full w-[270px] overflow-hidden rounded-[3rem] border border-white/15 bg-gradient-to-b from-slate-900 to-slate-950 p-4 shadow-[0_40px_80px_-20px_rgba(14,165,233,0.45)]">
-        <div className="absolute inset-x-8 top-4 h-1.5 rounded-full bg-white/10" />
-        <div className="absolute inset-[12px] rounded-[2.4rem] border border-white/10 bg-gradient-to-b from-slate-900/90 to-slate-950/95 p-4">
-          <div className="flex h-full flex-col gap-4">
-            <div className="space-y-1">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
-                Smart Portfolio
-              </p>
-              <p className="text-2xl font-semibold text-white">¥2,540,000</p>
-              <p className="text-xs text-emerald-300">+12.4% 今日</p>
+    <div className="pointer-events-none absolute inset-0">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(18,24,28,0.85),rgba(5,7,8,0.95))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,13,16,0.9)_0%,rgba(5,7,8,0.95)_45%,rgba(5,7,8,1)_100%)]" />
+      <div className="animate-blob absolute left-[-18%] top-[-8%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.18),transparent_65%)] blur-3xl" />
+      <div className="animate-blob-delay absolute right-[-10%] top-[12%] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.24),transparent_60%)] blur-3xl" />
+      <div className="animate-float absolute left-1/2 top-[18%] h-[540px] w-[540px] -translate-x-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle,rgba(12,18,22,0.8),transparent_70%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-[radial-gradient(circle_at_bottom,rgba(12,17,20,0.65),transparent_70%)]" />
+    </div>
+  );
+}
+
+function HeroPhone() {
+  return (
+    <div className="pointer-events-none absolute left-1/2 top-16 z-10 w-[360px] -translate-x-1/2 sm:w-[420px]">
+      <div className="relative">
+        <div className="absolute inset-0 -z-10 scale-125 rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.25),transparent_60%)] blur-[120px]" />
+        <div className="relative mx-auto aspect-[9/19] w-full overflow-hidden rounded-[3.2rem] border border-white/10 bg-gradient-to-b from-[#121619] via-[#050708] to-[#101417] shadow-[0_80px_180px_-60px_rgba(20,110,255,0.55)]">
+          <div className="absolute inset-x-16 top-6 h-2 rounded-full bg-white/10" />
+          <div className="flex h-full flex-col justify-end rounded-[3.1rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.04),transparent_65%)] px-8 pb-10 pt-24 text-left">
+            <div className="space-y-2 text-white/80">
+              <p className="text-sm font-semibold tracking-[0.08em] text-white/70">GM!</p>
+              <p className="text-[13px] text-white/60">You are up +$2.19M today.</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-black/30 p-4 shadow-inner">
-              <Curve />
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 text-white">
+              <div className="flex items-center justify-between text-xs text-white/60">
+                <span>Balance</span>
+                <span>$9.03M</span>
+              </div>
+              <div className="mt-3 flex items-center justify-between text-[11px] text-emerald-300">
+                <span>+2.19M</span>
+                <span className="text-sky-300">+31.97%</span>
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-3 text-[11px] text-white/70">
-              {[
-                { label: '安定', value: '45%' },
-                { label: 'ミドル', value: '35%' },
-                { label: 'アクティブ', value: '20%' },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-white/10 bg-white/5 p-3 text-center backdrop-blur"
-                >
-                  <span className="block text-[10px] text-white/50">
-                    {item.label}
-                  </span>
-                  <span className="text-sm font-semibold text-white">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-cyan-500/15 to-indigo-500/15 p-3">
-              <p className="text-[11px] uppercase tracking-[0.25em] text-white/50">
-                次の取引まで
-              </p>
-              <div className="mt-1 flex items-center justify-between text-sm text-white">
-                <span className="font-semibold">00:02:34</span>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-200">
-                  Active
-                </span>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-black/50 p-4 text-[11px] text-white/60">
+              <p>Ask D-invesment</p>
+              <div className="mt-2 flex items-center justify-between text-[10px] text-white/40">
+                <span>モード: Fast</span>
+                <span>AI Online</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <FloatingCard />
     </div>
   );
 }
 
-function Curve() {
-  return (
-    <svg
-      viewBox="0 0 200 120"
-      className="h-24 w-full"
-      fill="none"
-      strokeWidth="2"
-    >
-      <defs>
-        <linearGradient id="curveGradient" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0%" stopColor="rgba(34, 211, 238, 0.8)" />
-          <stop offset="100%" stopColor="rgba(129, 140, 248, 0.8)" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M4 96 C 32 62, 68 110, 96 74 C 128 38, 156 110, 196 48"
-        stroke="url(#curveGradient)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4 96 L 196 48"
-        stroke="rgba(148, 163, 184, 0.2)"
-        strokeDasharray="4 6"
-      />
-      <circle cx="196" cy="48" r="5" fill="rgba(129, 140, 248, 0.9)" />
-      <circle cx="96" cy="74" r="5" fill="rgba(34, 211, 238, 0.9)" />
-    </svg>
-  );
-}
+type StoreButtonProps = {
+  platform: 'ios' | 'android';
+};
 
-function AnimatedBackdrop() {
-  return (
-    <div className="absolute inset-0">
-      <div className="animate-blob absolute left-1/2 top-10 h-[680px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.16),transparent_65%)] blur-3xl" />
-      <div className="animate-blob-delay absolute -left-32 top-48 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(129,140,248,0.22),transparent_60%)] blur-2xl" />
-      <div className="animate-float absolute bottom-0 right-10 h-48 w-48 rounded-3xl border border-white/10 bg-white/5 p-[1px]">
-        <div className="h-full w-full rounded-3xl bg-gradient-to-br from-white/10 via-transparent to-white/20" />
-      </div>
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-    </div>
-  );
-}
+function StoreButton({ platform }: StoreButtonProps) {
+  const content =
+    platform === 'ios'
+      ? {
+          label: 'App Store',
+          prefix: 'Download on the',
+          icon: '',
+        }
+      : {
+          label: 'Google Play',
+          prefix: 'Get it on',
+          icon: '▶',
+        };
 
-function PhoneBackdrop() {
   return (
-    <div className="relative h-full w-full">
-      <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[conic-gradient(from_45deg,rgba(34,211,238,0.3),rgba(129,140,248,0.25),rgba(14,165,233,0.3),rgba(34,211,238,0.3))] opacity-60" />
-      <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle,rgba(15,23,42,0.2),transparent_65%)]" />
-      <div className="absolute left-1/2 top-10 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-400/40 to-indigo-500/20 blur-2xl" />
-      <div className="absolute right-12 top-1/3 h-24 w-24 rounded-full bg-gradient-to-br from-white/20 to-transparent blur-xl" />
-    </div>
-  );
-}
-
-function FloatingCard() {
-  return (
-    <div className="animate-float absolute -left-24 bottom-16 hidden w-48 flex-col gap-2 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-4 text-xs text-white shadow-[0_20px_50px_-20px_rgba(15,118,110,0.5)] backdrop-blur md:flex">
-      <span className="text-[10px] uppercase tracking-[0.25em] text-white/50">
-        Sync Status
+    <button className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-left text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/10">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-lg">
+        {content.icon}
       </span>
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold">1540bo.org</span>
-        <span className="rounded-full bg-emerald-400/25 px-2 py-1 text-[10px] font-semibold text-emerald-200">
-          Online
+      <span className="flex flex-col leading-none">
+        <span className="text-[11px] uppercase tracking-[0.25em] text-white/50">
+          {content.prefix}
         </span>
-      </div>
-      <p className="text-[11px] text-white/60">次回再同期 · 03:12</p>
-    </div>
+        <span className="text-sm font-semibold">{content.label}</span>
+      </span>
+    </button>
   );
 }
