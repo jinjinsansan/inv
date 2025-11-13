@@ -145,6 +145,9 @@ export const dictionaries = {
           registrationDate: "不明",
         },
       },
+      states: {
+        loading: "プロフィールを読み込んでいます…",
+      },
       sections: {
         connection: {
           title: "1540bo連携ステータス",
@@ -403,6 +406,9 @@ export const dictionaries = {
           email: "Not provided",
           registrationDate: "Unknown",
         },
+      },
+      states: {
+        loading: "Loading your profile…",
       },
       sections: {
         connection: {

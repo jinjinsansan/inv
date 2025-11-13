@@ -1,19 +1,91 @@
+
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 
+import { getSupabaseBrowserClient, type BrowserSupabaseClient } from '@/lib/supabase-client';
 import { useLanguage } from '@/providers/language-provider';
-
-type MyPageProps = {
-  session: Session;
-};
 
 const nameKeys = ['full_name', 'name', 'display_name'];
 
-export function MyPage({ session }: MyPageProps) {
+export function MyPage() {
   const { dictionary, locale } = useLanguage();
   const { myPage } = dictionary;
+  const router = useRouter();
+
+  const supabase = useMemo<BrowserSupabaseClient | null>(() => {
+    try {
+      return getSupabaseBrowserClient();
+    } catch (clientError) {
+      console.error('[mypage] Browser Supabase client unavailable', clientError);
+      return null;
+    }
+  }, []);
+
+  const [session, setSession] = useState<Session | null>(null);
+  const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated'>(
+    'loading',
+  );
+
+  useEffect(() => {
+    if (!supabase) {
+      queueMicrotask(() => {
+        setStatus('unauthenticated');
+      });
+      router.replace('/');
+      return;
+    }
+
+    let isMounted = true;
+
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        if (!isMounted) {
+          return;
+        }
+        const nextSession = data.session ?? null;
+        setSession(nextSession);
+        setStatus(nextSession ? 'authenticated' : 'unauthenticated');
+        if (!nextSession) {
+          router.replace('/');
+        }
+      })
+      .catch((error) => {
+        console.error('[mypage] Failed to fetch session', error);
+        if (!isMounted) {
+          return;
+        }
+        setStatus('unauthenticated');
+        router.replace('/');
+      });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession);
+      setStatus(nextSession ? 'authenticated' : 'unauthenticated');
+      if (!nextSession) {
+        router.replace('/');
+      }
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, [supabase, router]);
+
+  if (status !== 'authenticated' || !session) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center text-sm text-white/60">
+        {myPage.states.loading}
+      </div>
+    );
+  }
 
   const metadata = (session.user.user_metadata ?? {}) as Record<string, unknown>;
   const displayNameCandidate = nameKeys
