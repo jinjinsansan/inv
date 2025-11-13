@@ -17,10 +17,10 @@ export const dictionaries = {
       getStarted: "無料で始める",
     },
     hero: {
-      badge: "1540bo.org公式連携ボット",
+      badge: "AI bot trading",
       title: "スマートフォンひとつでプロの自動トレードを",
       subtitle:
-        "D-invesmentは1540bo.orgと連携し、Nansenのような洗練された体験でAIトレードを自動化。安定・ミドル・アクティブのモードを切り替え、資金効率を最大化します。",
+        "D-invesmentはGPT、Gemini、Claude、GrokなどのAIを用いた投資手法で資産運用を最適化します。",
       ctaPrimary: "無料でアカウント作成",
       ctaSecondary: "デモを見る",
       trustedBy: "主要トレーダーが信頼",

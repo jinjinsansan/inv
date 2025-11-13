@@ -22,10 +22,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-transparent backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 text-white">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 text-sm font-bold text-slate-900">
+          <span className="inline-flex h-10 w-10 items-center justify-center bg-red-500 text-base font-bold text-white">
             D
           </span>
-          <span className="text-lg font-semibold">D-invesment</span>
+          <span className="text-lg font-semibold">invesment</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium text-white/70 md:flex">
           {links.map((link) => (

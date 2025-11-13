@@ -81,22 +81,16 @@ export function HomePage() {
               )}
             </div>
           </div>
-          <div className="relative flex items-center justify-center">
-            <div className="relative w-full max-w-md overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-2 backdrop-blur">
-              <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
-                <Image
-                  src="/btcusd.jpeg"
-                  alt="BTCUSD automated trading"
-                  width={640}
-                  height={960}
-                  className="h-auto w-full object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-              </div>
-              <div className="absolute left-6 bottom-6 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/70 backdrop-blur">
-                Live Feed
-              </div>
+          <div className="relative flex items-center justify-center md:justify-end">
+            <div className="relative w-full max-w-xl overflow-hidden md:max-w-2xl md:scale-[1.15] md:translate-x-6">
+              <Image
+                src="/btcusd.jpeg"
+                alt="BTCUSD automated trading"
+                width={960}
+                height={1440}
+                className="h-auto w/full rounded-[2.5rem] object-cover shadow-2xl"
+                priority
+              />
             </div>
           </div>
         </div>
@@ -249,9 +243,23 @@ function StoreButton({ platform }: StoreButtonProps) {
           icon: '→',
         };
 
+  const baseButtonClasses =
+    'inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-semibold transition';
+  const buttonClasses =
+    platform === 'ios'
+      ? `${baseButtonClasses} bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-400`
+      : `${baseButtonClasses} border border-white/15 bg-white/5 text-white hover:border-white/40 hover:bg-white/10`;
+
+  const iconBaseClasses =
+    'flex h-8 w-8 items-center justify-center rounded-full text-sm transition';
+  const iconClasses =
+    platform === 'ios'
+      ? `${iconBaseClasses} bg-white/20 text-white`
+      : `${iconBaseClasses} bg-white/10 text-white`;
+
   return (
-    <button className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10">
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm">
+    <button className={buttonClasses}>
+      <span className={iconClasses}>
         {content.icon}
       </span>
       <span>{content.label}</span>
