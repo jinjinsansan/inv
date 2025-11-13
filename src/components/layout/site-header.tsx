@@ -1,6 +1,7 @@
 'use client';
 
 import { LanguageToggle } from '@/components/shared/language-toggle';
+import { AuthButton } from '@/components/shared/auth-button';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/providers/language-provider';
 import Link from 'next/link';
@@ -43,18 +44,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-3">
           <LanguageToggle />
-          <Link
-            href="/login"
-            className="hidden rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/80 transition hover:border-white/60 hover:text-white md:inline-flex"
-          >
-            {dictionary.nav.signIn}
-          </Link>
-          <Link
-            href="/signup"
-            className="hidden rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 px-4 py-2 text-xs font-semibold text-slate-900 shadow md:inline-flex"
-          >
-            {dictionary.nav.getStarted}
-          </Link>
+          <AuthButton />
         </div>
       </div>
     </header>
