@@ -218,28 +218,64 @@ export const dictionaries = {
     adminPage: {
       title: "管理者パネル",
       subtitle:
-        "ユーザー、取引ログ、モード選択、決済情報を一括管理します。",
-      metrics: {
+        "1540bo.orgとの連携状況やユーザーの認証状態を確認し、必要な運用タスクをまとめて管理できます。",
+      states: {
+        loading: "ダッシュボードを読み込んでいます…",
+      },
+      alerts: {
+        misconfigured: "Supabaseのサービスロールキー（SUPABASE_SERVICE_ROLE_KEY）が設定されていません。環境変数を更新して管理者機能を有効化してください。",
+        fetchFailed: "ユーザー一覧の取得に失敗しました。しばらくしてから再度お試しください。",
+      },
+      summary: {
         totalUsers: "登録ユーザー",
-        activeConnections: "接続中アカウント",
-        monthlyVolume: "月間取引額",
+        totalUsersHint: "Supabase Authから取得した現在の登録数です。",
+        maintenance: "メンテナンスモード",
+        maintenanceHint: "メンテナンス切り替え機能は現在準備中です。",
+        accounting: "決算情報",
+        accountingHint: "決算ダッシュボードは今後のアップデートで追加予定です。",
+        comingSoon: "Coming soon",
       },
-      userTable: {
-        user: "ユーザー",
-        email: "メール",
-        plan: "プラン",
-        mode: "モード",
-        status: "接続",
-        lastActivity: "最終アクティビティ",
+      users: {
+        title: "ユーザー一覧",
+        description: "Supabase Authに登録されたユーザーを確認できます。",
+        columns: {
+          userId: "ユーザーID",
+          email: "メールアドレス",
+          name: "氏名",
+          createdAt: "登録日時",
+          lastSignIn: "最終ログイン",
+          status: "確認状況",
+        },
+        status: {
+          verified: "確認済み",
+          pending: "未確認",
+        },
+        loading: "ユーザー情報を取得中です…",
+        empty: "ユーザーが見つかりません。",
+        unknown: "不明",
+        refresh: "再読み込み",
+        refreshing: "更新中…",
+        lastSync: "最終取得",
       },
-      tradeOverview: {
-        title: "最新取引概要",
+      maintenance: {
+        title: "サイトメンテナンス",
+        description:
+          "全体メンテナンスモードの切り替え機能をここから管理します。",
+        placeholder: "メンテナンスAPIとの連携を実装すると、ここから稼働状態を切り替えられます。",
+        toggleLabel: "メンテナンス設定（準備中）",
+        helpText: "運用フロー決定後にアクティブ化されます。",
       },
-      paymentStats: {
-        title: "決済状況",
-        paid: "支払い済み",
-        upcoming: "次回請求",
-        overdue: "延滞",
+      accounting: {
+        title: "決算・計数管理",
+        description:
+          "決算サマリーや入出金レポートをここで統合表示する予定です。",
+        placeholder: "決算レポートAPIと連携すると、売上・費用・未収金などを集計表示します。",
+        historyLink: "取引履歴を開く",
+      },
+      misc: {
+        title: "追加機能",
+        description: "権限管理・通知運用などの拡張機能が順次追加されます。",
+        placeholder: "要件が固まり次第、このセクションに機能が表示されます。",
       },
     },
     common: {
@@ -482,28 +518,65 @@ export const dictionaries = {
     adminPage: {
       title: "Admin panel",
       subtitle:
-        "Centralize user management, trade logs, mode assignments, and billing insights.",
-      metrics: {
-        totalUsers: "Users",
-        activeConnections: "Connected",
-        monthlyVolume: "Monthly volume",
+        "Monitor Supabase Auth users, plan maintenance operations, and stage upcoming admin tools in one place.",
+      states: {
+        loading: "Loading dashboard…",
       },
-      userTable: {
-        user: "User",
-        email: "Email",
-        plan: "Plan",
-        mode: "Mode",
-        status: "Status",
-        lastActivity: "Last activity",
+      alerts: {
+        misconfigured:
+          "Supabase service role key (SUPABASE_SERVICE_ROLE_KEY) is not configured. Add it to the environment to enable admin features.",
+        fetchFailed: "Unable to load the user list. Please try again shortly.",
       },
-      tradeOverview: {
-        title: "Latest trades",
+      summary: {
+        totalUsers: "Registered users",
+        totalUsersHint: "Live count fetched from Supabase Auth.",
+        maintenance: "Maintenance mode",
+        maintenanceHint: "The maintenance toggle will be wired up soon.",
+        accounting: "Accounting",
+        accountingHint: "Financial dashboards will be added in a future release.",
+        comingSoon: "Coming soon",
       },
-      paymentStats: {
-        title: "Billing status",
-        paid: "Paid",
-        upcoming: "Upcoming",
-        overdue: "Overdue",
+      users: {
+        title: "User directory",
+        description: "Review everyone who has registered via Supabase Auth.",
+        columns: {
+          userId: "User ID",
+          email: "Email",
+          name: "Name",
+          createdAt: "Created",
+          lastSignIn: "Last sign-in",
+          status: "Status",
+        },
+        status: {
+          verified: "Verified",
+          pending: "Pending",
+        },
+        loading: "Fetching users…",
+        empty: "No users found yet.",
+        unknown: "Unknown",
+        refresh: "Refresh",
+        refreshing: "Refreshing…",
+        lastSync: "Last sync",
+      },
+      maintenance: {
+        title: "Site maintenance",
+        description:
+          "This control will toggle global maintenance mode once the backend workflow is ready.",
+        placeholder: "Connect the maintenance API to change the live status directly from here.",
+        toggleLabel: "Maintenance toggle (planned)",
+        helpText: "Will activate when the operational process is finalized.",
+      },
+      accounting: {
+        title: "Accounting & finance",
+        description:
+          "Future releases will surface settlements, revenue summaries, and outstanding balances.",
+        placeholder: "Once the accounting service is connected, KPI and ledger metrics will appear here.",
+        historyLink: "Open trade history",
+      },
+      misc: {
+        title: "Additional tools",
+        description: "Role management, notifications, and other admin utilities will land here.",
+        placeholder: "As requirements solidify, this section will populate with new controls.",
       },
     },
     common: {
