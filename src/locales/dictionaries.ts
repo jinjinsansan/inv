@@ -131,20 +131,38 @@ export const dictionaries = {
     },
     myPage: {
       title: "マイページ",
-      registrationDate: "登録日",
-      email: "メールアドレス",
-      billingStatus: "決済ステータス",
-      plan: "契約プラン",
-      lastLogin: "最終ログイン",
-      actions: {
-        managePlan: "プランを変更",
-        updateEmail: "メールを更新",
-        securitySettings: "セキュリティ設定",
+      profile: {
+        title: "プロフィール情報",
+        description: "Google認証から同期された登録情報です。",
+        labels: {
+          name: "氏名",
+          email: "メールアドレス",
+          registrationDate: "登録日",
+        },
+        fallbacks: {
+          name: "未設定",
+          email: "未設定",
+          registrationDate: "不明",
+        },
       },
-      planOptions: {
-        basic: "ベーシック",
-        pro: "プロ",
-        enterprise: "エンタープライズ",
+      sections: {
+        connection: {
+          title: "1540bo連携ステータス",
+          description:
+            "接続設定ページで連携すると、ボットの稼働状況がここに表示されます。",
+          statusPlaceholder: "現在は接続設定ページとの連携を準備中です。",
+          actionLabel: "接続設定を開く",
+          actionHint:
+            "接続設定ページでAPIキーを登録すると進行状況が同期されます。",
+        },
+        tools: {
+          title: "ツール購入履歴",
+          description: "購入した自動売買ツールの一覧がここに表示されます。",
+          emptyState: "ツール購入ページと連携すると履歴が表示されます。",
+          actionLabel: "近日公開",
+          actionHint:
+            "ツール購入ページが公開され次第ここからアクセスできます。",
+        },
       },
     },
     historyPage: {
@@ -371,20 +389,41 @@ export const dictionaries = {
     },
     myPage: {
       title: "My Page",
-      registrationDate: "Registration date",
-      email: "Email",
-      billingStatus: "Billing status",
-      plan: "Plan",
-      lastLogin: "Last login",
-      actions: {
-        managePlan: "Change plan",
-        updateEmail: "Update email",
-        securitySettings: "Security settings",
+      profile: {
+        title: "Profile details",
+        description:
+          "Information synced from your Google authentication profile.",
+        labels: {
+          name: "Full name",
+          email: "Email",
+          registrationDate: "Registration date",
+        },
+        fallbacks: {
+          name: "Not provided",
+          email: "Not provided",
+          registrationDate: "Unknown",
+        },
       },
-      planOptions: {
-        basic: "Basic",
-        pro: "Pro",
-        enterprise: "Enterprise",
+      sections: {
+        connection: {
+          title: "1540bo connection",
+          description:
+            "Once you connect via the settings page, bot activity will appear here.",
+          statusPlaceholder:
+            "Integration with the connection settings page is in progress.",
+          actionLabel: "Open connection settings",
+          actionHint:
+            "Set up the API key on the connection page to keep this status up to date.",
+        },
+        tools: {
+          title: "Tool purchase history",
+          description: "A list of purchased automation tools will be displayed here.",
+          emptyState:
+            "History will sync after the tool purchase page is connected.",
+          actionLabel: "Coming soon",
+          actionHint:
+            "This button will activate when the tool marketplace launches.",
+        },
       },
     },
     historyPage: {
