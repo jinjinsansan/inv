@@ -1,11 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Session, SupabaseClient } from '@supabase/supabase-js';
-import { getSupabaseBrowserClient } from '@/lib/supabase-client';
+import type { Session } from '@supabase/supabase-js';
+import { getSupabaseBrowserClient, type BrowserSupabaseClient } from '@/lib/supabase-client';
 
 export function AuthButton() {
-  const supabase = useMemo<SupabaseClient | null>(() => {
+  const supabase = useMemo<BrowserSupabaseClient | null>(() => {
     try {
       return getSupabaseBrowserClient();
     } catch (clientError) {
